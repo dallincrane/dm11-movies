@@ -8,6 +8,11 @@ var app = express()
 app.use(bodyParser.json())
 app.use(express.static('public'))
 
+app.use(function(req, res, next) {
+  console.log('body: ', req.body)
+  next()
+})
+
 app.get('/movies', moviesController.index)
 app.get('/movies/:id', moviesController.show)
 app.put('/movies/:id', moviesController.update)
